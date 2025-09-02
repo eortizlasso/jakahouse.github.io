@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jaka Jaka Hpuse | Tienda Online</title>
+  <meta name="description" content="Compra dulces mexicanos con envío a toda Colombia. Catálogo, precios en COP, métodos de pago y tiempos de entrega." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23ff4757'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='52' fill='white' font-family='Arial, Helvetica, sans-serif'%3E🍬%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg:#0f1220; --panel:#151935; --muted:#a7b0c3; --text:#e7ecf5; --brand:#ff3b6a; --brand-2:#ffa32b; --ok:#27ae60; --warn:#f39c12;
+      --ring: 0 0 0 3px rgba(255,59,106,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background: radial-gradient(1200px 700px at 20% -10%, rgba(255,59,106,.15), transparent 60%), radial-gradient(800px 600px at 120% 0%, rgba(255,163,43,.12), transparent 60%), var(--bg); color:var(--text); font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif}
+    a{color:inherit; text-decoration:none}
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.1) blur(8px); background: rgba(15,18,32,.6); border-bottom:1px solid rgba(255,255,255,.06)}
+    .container{max-width:1100px; margin:0 auto; padding:0 16px}
+    .row{display:flex; align-items:center; gap:16px}
+    .brand{display:flex; align-items:center; gap:10px; padding:14px 0}
+    .brand i{font-size:26px}
+    nav{margin-left:auto; display:flex; gap:14px}
+    nav a{padding:8px 10px; border-radius:10px}
+    nav a:hover{background:rgba(255,255,255,.06)}
+    .cta{background:linear-gradient(90deg,var(--brand),var(--brand-2)); border:0; color:white; padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600}
+    .cta:focus{outline:none; box-shadow:var(--ring)}
+
+    .hero{padding:40px 0 26px}
+    .hero h1{font-size: clamp(28px, 4.5vw, 46px); line-height:1.05; margin:0 0 10px}
+    .hero p{color:var(--muted); margin:0 0 16px}
+    .badges{display:flex; gap:10px; flex-wrap:wrap}
+    .badge{background:rgba(255,255,255,.06); padding:6px 10px; border-radius:999px; font-size:13px}
+
+    .toolbar{position:sticky; top:64px; z-index:40; background:rgba(21,25,53,.85); backdrop-filter: blur(6px); border-top:1px solid rgba(255,255,255,.06); border-bottom:1px solid rgba(255,255,255,.06)}
+    .toolbar .grid{display:grid; grid-template-columns:1fr 160px 160px; gap:10px; padding:12px 0}
+    .toolbar input, .toolbar select{width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:#0e1124; color:var(--text)}
+    .toolbar input:focus, .toolbar select:focus{outline:none; box-shadow:var(--ring); border-color:transparent}
+
+    .catalogo{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; padding:22px 0 40px}
+    .card{grid-column: span 4; background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:16px; overflow:hidden; position:relative}
+    @media(max-width:900px){.card{grid-column: span 6}}
+    @media(max-width:640px){.card{grid-column: span 12}}
+    .imgwrap{aspect-ratio: 16/11; display:grid; place-items:center; background: radial-gradient(500px 220px at 50% 20%, rgba(255,59,106,.15), transparent 60%)}
+    .imgwrap svg{width:84%; height:auto; display:block}
+    .pill{position:absolute; top:10px; left:10px; background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.2); padding:4px 8px; border-radius:999px; font-size:12px}
+    .content{padding:14px}
+    .title{font-weight:700; margin:0 0 4px; font-size:18px}
+    .meta{font-size:13px; color:var(--muted)}
+    .price{font-weight:800; font-size:20px; margin:10px 0}
+    .stock{font-size:12px; color:#b7ffcc}
+    .spicy{color:#ff8a66}
+    .actions{display:flex; align-items:center; gap:8px; margin-top:12px}
+    .ghost{background:transparent; border:1px solid rgba(255,255,255,.18); color:var(--text); padding:9px 12px; border-radius:10px; cursor:pointer}
+    .ghost:hover{background:rgba(255,255,255,.06)}
+
+    section{padding:30px 0}
+    h2{font-size: clamp(22px, 3.5vw, 32px); margin:0 0 12px}
+    .panel{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:16px; padding:16px}
+    .grid-2{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+    @media(max-width:800px){.grid-2{grid-template-columns:1fr}}
+    ul{margin:8px 0 0 18px}
+
+    form .row{gap:10px; flex-wrap:wrap}
+    input, textarea{width:100%; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0e1124; color:var(--text)}
+    textarea{min-height:110px; resize:vertical}
+    label{font-size:13px; color:var(--muted)}
+    .formgrid{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+    @media(max-width:700px){.formgrid{grid-template-columns:1fr}}
+
+    footer{padding:30px 0 50px; color:var(--muted)}
+    .footergrid{display:grid; grid-template-columns: 2fr 1fr 1fr; gap:20px}
+    @media(max-width:900px){.footergrid{grid-template-columns:1fr}}
+    .fine{font-size:12px; color:#94a1b2}
+
+    /* Cart mini panel */
+    .cart{position:fixed; right:16px; bottom:16px; background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:12px; box-shadow: 0 10px 30px rgba(0,0,0,.35); width:min(380px, 92vw); display:none}
+    .cart.open{display:block}
+    .cart h3{margin:0 0 8px}
+    .cart .items{max-height:260px; overflow:auto; border-top:1px dashed rgba(255,255,255,.12); border-bottom:1px dashed rgba(255,255,255,.12); padding:8px 0; margin:8px 0}
+    .cart .item{display:grid; grid-template-columns: 1fr 70px 26px; gap:8px; align-items:center; padding:8px 0}
+    .cart .total{display:flex; justify-content:space-between; font-weight:800}
+    .cart .close{all:unset; cursor:pointer; padding:4px 8px; border:1px solid rgba(255,255,255,.2); border-radius:8px}
+    .chip{font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container row">
+      <a href="#" class="brand" aria-label="Inicio">
+        <img src="img/1.jpg" alt="Logotipo" width="50">
+
+        <strong>Jaka Jaka House → COL</strong>
+      </a>
+      <nav aria-label="Secciones principales">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#envios">Envíos</a>
+        <a href="#faq">Preguntas</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#" id="abrirCarrito" class="chip" aria-label="Abrir carrito">Carrito <span id="cartCount">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Todos tus <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent">dulces mexicanos</span> favoritos, con envío a toda Colombia</h1>
+      <p>Precios en pesos colombianos (COP), tiempos de entrega claros y métodos de pago locales. ¡Arma tu caja y disfruta!</p>
+      <div class="badges">
+        <span class="badge">🇲🇽 Originales</span>
+        <span class="badge">🇨🇴 Envío nacional</span>
+        <span class="badge">🛡️ Pago seguro</span>
+        <span class="badge">🔥 Picantes y clásicos</span>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="container">
+        <div class="grid">
+          <input id="search" type="search" placeholder="Buscar: mazapán, pulparindo, duvalín…" aria-label="Buscar productos" />
+          <select id="category" aria-label="Filtrar por categoría">
+            <option value="">Todas las categorías</option>
+            <option>Gomitas</option>
+            <option>Chocolates</option>
+            <option>Caramelos</option>
+            <option>Picante</option>
+            <option>Snacks</option>
+          </select>
+          <select id="sort" aria-label="Ordenar resultados">
+            <option value="relevance">Ordenar: Relevancia</option>
+            <option value="price-asc">Precio: menor a mayor</option>
+            <option value="price-desc">Precio: mayor a menor</option>
+            <option value="name-asc">Nombre: A-Z</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <section id="catalogo" aria-label="Catálogo de productos">
+      <div class="catalogo" id="grid"></div>
+    </section>
+
+    <section id="envios">
+      <h2>Envíos y Pagos</h2>
+      <div class="panel grid-2">
+        <div>
+          <h3 style="margin:0 0 8px">Tiempos de entrega</h3>
+          <p><strong>Nacional:</strong> 3–6 días hábiles a principales ciudades; 5–8 días a destinos especiales. Empacamos con protección contra golpes y calor.</p>
+          <ul>
+            <li>Envío estándar: <strong>$12.900 COP</strong></li>
+            <li>Gratis por compras desde <strong>$129.000 COP</strong></li>
+            <li>Reexpedición (zonas remotas): costo adicional según transportadora</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin:0 0 8px">Pagos</h3>
+          <ul>
+            <li>Transferencia/Nequi/Daviplata</li>
+            <li>Tarjeta débito y crédito</li>
+            <li>Contraentrega en zonas seleccionadas (consulta disponibilidad)</li>
+          </ul>
+          <p class="fine">Todos los precios incluyen impuestos. Los valores de envío pueden variar según peso/volumen del pedido.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>Preguntas frecuentes</h2>
+      <div class="panel">
+        <details>
+          <summary>¿Los productos son originales?</summary>
+          <p>Sí, importados de distribuidores autorizados en México. Conservamos cadena de frío cuando aplica.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si llega derretido o maltratado?</summary>
+          <p>Si el empaque llega dañado o el producto en mal estado, contáctanos en 24 horas con fotos y resolvemos con reposición o reembolso parcial.</p>
+        </details>
+        <details>
+          <summary>¿Hacen ventas al por mayor?</summary>
+          <p>Sí, ofrecemos precios especiales por volumen desde 12 unidades por referencia. Escríbenos por el formulario.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <form class="panel" onsubmit="event.preventDefault(); alert('¡Gracias! Te responderemos pronto.'); this.reset();">
+        <div class="formgrid">
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" required placeholder="Tu nombre" />
+          </div>
+          <div>
+            <label for="correo">Correo</label>
+            <input id="correo" name="correo" type="email" required placeholder="tunombre@email.com" />
+          </div>
+        </div>
+        <div class="row">
+          <div style="flex:1">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required placeholder="Quiero cotizar un pedido…"></textarea>
+          </div>
+        </div>
+        <div class="row" style="justify-content:space-between">
+          <label><input type="checkbox" required /> Acepto el tratamiento de datos personales</label>
+          <button class="cta" type="submit">Enviar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footergrid">
+      <div>
+        <strong>Jaka Jaka House → COL</strong>
+        <p class="fine">© <span id="yy"></span> Todos los derechos reservados. Este es un demo listo para copiar y pegar en VS Code.</p>
+      </div>
+      <div>
+        <p><strong>Atención</strong></p>
+        <p class="fine">Lun–Sáb: 9:00–18:00<br/>WhatsApp: +57 300 000 0000</p>
+      </div>
+      <div>
+        <p><strong>Redes</strong></p>
+        <p class="fine">Instagram · Facebook · TikTok</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mini Carrito -->
+  <aside class="cart" id="carrito" aria-live="polite" aria-label="Carrito de compras">
+    <div class="row" style="justify-content:space-between; align-items:center">
+      <h3>Tu carrito</h3>
+      <button class="close" id="cerrarCarrito" aria-label="Cerrar carrito">Cerrar</button>
+    </div>
+    <div class="items" id="cartItems"></div>
+    <div class="total"><span>Total</span><span id="cartTotal">$0</span></div>
+    <div class="row" style="justify-content:flex-end; margin-top:10px">
+      <button class="ghost" onclick="alert('Checkout de demostración. Integra tu pasarela de pago aquí 😊');">Proceder al pago</button>
+    </div>
+  </aside>
+
+  <script>
+    // --- Datos del catálogo ---
+    const productos = [
+      { id:1, nombre:"Pulparindo de Tamarindo", categoria:"Picante", peso:"14 g", precio:3900, stock:48, picante:"Medio" },
+      { id:2, nombre:"Mazapán de la Rosa", categoria:"Chocolates", peso:"28 g", precio:4500, stock:64, picante:"N/A" },
+      { id:3, nombre:"Duvalín Vaso (fresa-vainilla)", categoria:"Chocolates", peso:"18 g", precio:4200, stock:52, picante:"N/A" },
+      { id:4, nombre:"Pelón Pelo Rico", categoria:"Picante", peso:"30 g", precio:6500, stock:40, picante:"Suave" },
+      { id:5, nombre:"Paleta Vero Mango", categoria:"Picante", peso:"18 g", precio:3500, stock:70, picante:"Medio" },
+      { id:6, nombre:"Lucas Muecas (Chamoy)", categoria:"Picante", peso:"24 g", precio:5200, stock:38, picante:"Medio" },
+      { id:7, nombre:"Rellerindos", categoria:"Caramelos", peso:"20 g", precio:2800, stock:100, picante:"Suave" },
+      { id:8, nombre:"Takis Fuego (bolsa pequeña)", categoria:"Snacks", peso:"56 g", precio:7900, stock:34, picante:"Alto" },
+      { id:9, nombre:"Canelitas (galletas)", categoria:"Snacks", peso:"90 g", precio:6200, stock:22, picante:"N/A" },
+      { id:10, nombre:"Chupa Chups Picafresa", categoria:"Caramelos", peso:"12 g", precio:2400, stock:140, picante:"Suave" },
+    ];
+
+    // --- Utilidades ---
+    const $ = (q, ctx=document) => ctx.querySelector(q);
+    const $$ = (q, ctx=document) => Array.from(ctx.querySelectorAll(q));
+    const money = v => v.toLocaleString('es-CO',{style:'currency', currency:'COP', maximumFractionDigits:0});
+
+    // --- Render de productos ---
+    const grid = $('#grid');
+    function candySVG(){
+      return `\n        <svg viewBox='0 0 200 140' xmlns='http://www.w3.org/2000/svg' role='img' aria-label='Imagen de producto'>
+          <defs>
+            <linearGradient id='g' x1='0' x2='1'>
+              <stop offset='0' stop-color='${getComputedStyle(document.documentElement).getPropertyValue('--brand').trim()}'/>
+              <stop offset='1' stop-color='${getComputedStyle(document.documentElement).getPropertyValue('--brand-2').trim()}'/>
+            </linearGradient>
+          </defs>
+          <rect x='16' y='20' width='168' height='100' rx='18' fill='url(#g)' opacity='.85'/>
+          <circle cx='80' cy='70' r='22' fill='white' opacity='.85'/>
+          <rect x='110' y='52' width='50' height='36' rx='8' fill='white' opacity='.25'/>
+          <text x='100' y='124' text-anchor='middle' fill='white' font-size='14' font-family='Arial'>Dulce MX</text>
+        </svg>`
+    }
+
+    function cardTpl(p){
+      const spicy = p.picante && p.picante !== 'N/A' ? ` · <span class='spicy'>Picante: ${p.picante}</span>` : '';
+      return `
+        <article class='card' data-id='${p.id}' data-name='${p.nombre.toLowerCase()}' data-cat='${p.categoria}' data-price='${p.precio}'>
+          <div class='imgwrap'>${candySVG()}</div>
+          <span class='pill'>${p.categoria}</span>
+          <div class='content'>
+            <h3 class='title'>${p.nombre}</h3>
+            <div class='meta'>Peso: ${p.peso}${spicy}</div>
+            <div class='price'>${money(p.precio)}</div>
+            <div class='meta stock'>Stock: ${p.stock} u.</div>
+            <div class='actions'>
+              <button class='cta add' aria-label='Agregar ${p.nombre} al carrito'>Agregar</button>
+              <button class='ghost' onclick='alert("Ingredientes, alérgenos y detalles próximos a publicar.")'>Detalles</button>
+            </div>
+          </div>
+        </article>`
+    }
+
+    function render(list){
+      grid.innerHTML = list.map(cardTpl).join('');
+      $$('.add', grid).forEach(btn=> btn.addEventListener('click', e=>{
+        const card = e.target.closest('.card');
+        const id = +card.dataset.id;
+        addToCart(id);
+      }));
+    }
+
+    // Inicial
+    render(productos);
+
+    // --- Filtros y orden ---
+    const inputSearch = $('#search');
+    const selCat = $('#category');
+    const selSort = $('#sort');
+
+    function applyFilters(){
+      let list = [...productos];
+      const q = inputSearch.value.trim().toLowerCase();
+      const cat = selCat.value;
+
+      if(q){ list = list.filter(p => p.nombre.toLowerCase().includes(q)); }
+      if(cat){ list = list.filter(p => p.categoria === cat); }
+
+      switch(selSort.value){
+        case 'price-asc': list.sort((a,b)=> a.precio-b.precio); break;
+        case 'price-desc': list.sort((a,b)=> b.precio-a.precio); break;
+        case 'name-asc': list.sort((a,b)=> a.nombre.localeCompare(b.nombre,'es')); break;
+        default: /* relevance: keep current order */ break;
+      }
+      render(list);
+    }
+
+    [inputSearch, selCat, selSort].forEach(el => el.addEventListener('input', applyFilters));
+    selSort.addEventListener('change', applyFilters);
+
+    // --- Mini carrito ---
+    const cart = [];
+    const carrito = $('#carrito');
+    const cartItems = $('#cartItems');
+    const cartTotal = $('#cartTotal');
+    const cartCount = $('#cartCount');
+
+    function addToCart(id){
+      const item = cart.find(i=> i.id===id);
+      if(item){ item.qty++; }
+      else{
+        const p = productos.find(p=> p.id===id);
+        cart.push({ id, nombre:p.nombre, precio:p.precio, qty:1 });
+      }
+      openCart();
+      drawCart();
+    }
+
+    function removeFromCart(id){
+      const i = cart.findIndex(x=> x.id===id);
+      if(i>-1){ cart.splice(i,1); drawCart(); }
+    }
+
+    function drawCart(){
+      cartItems.innerHTML = cart.length ? cart.map(i => `
+        <div class='item'>
+          <div>${i.nombre} <span class='fine'>x${i.qty}</span></div>
+          <div style='text-align:right'>${money(i.precio * i.qty)}</div>
+          <button class='close' aria-label='Quitar del carrito' onclick='removeFromCart(${i.id})'>×</button>
+        </div>`).join('') : '<p class="fine">Tu carrito está vacío.</p>';
+      const total = cart.reduce((s,i)=> s + i.precio*i.qty, 0);
+      cartTotal.textContent = money(total);
+      cartCount.textContent = cart.reduce((s,i)=> s+i.qty, 0);
+    }
+
+    function openCart(){ carrito.classList.add('open'); }
+    function closeCart(){ carrito.classList.remove('open'); }
+
+    $('#abrirCarrito').addEventListener('click', (e)=>{ e.preventDefault(); openCart(); });
+    $('#cerrarCarrito').addEventListener('click', closeCart);
+
+    // Año dinámico
+    $('#yy').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Datos estructurados básicos -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Store",
+    "name": "Dulces MX → COL",
+    "url": "https://example.com",
+    "description": "Tienda de dulces mexicanos con envíos a toda Colombia.",
+    "areaServed": "CO",
+    "makesOffer": [
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Pulparindo"},"priceCurrency":"COP","price":"3900"},
+      {"@type":"Offer","itemOffered":{"@type":"Product","name":"Mazapán de la Rosa"},"priceCurrency":"COP","price":"4500"}
+    ]
+  }
+  </script>
+</body>
+</html>
